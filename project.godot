@@ -13,9 +13,21 @@ _global_script_classes=[ {
 "class": "Bubble",
 "language": "GDScript",
 "path": "res://bubble/Bubble.gd"
+}, {
+"base": "Area2D",
+"class": "Customer",
+"language": "GDScript",
+"path": "res://customer/Customer.gd"
+}, {
+"base": "Reference",
+"class": "GlobalEnums",
+"language": "GDScript",
+"path": "res://utils/GlobalEnums.gd"
 } ]
 _global_script_class_icons={
-"Bubble": ""
+"Bubble": "",
+"Customer": "",
+"GlobalEnums": ""
 }
 
 [application]
@@ -60,6 +72,11 @@ ui_right={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
  ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="bubbles"
+2d_physics/layer_2="customers"
 
 [physics]
 
