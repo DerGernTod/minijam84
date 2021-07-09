@@ -6,9 +6,10 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 16.0
 
-[node name="Bubble" type="RigidBody2D"]
-collision_layer = 0
-collision_mask = 0
+[node name="Bubble" type="RigidBody2D" groups=[
+"bubbles",
+]]
+collision_mask = 2
 script = ExtResource( 2 )
 impulse_force = 500.0
 
