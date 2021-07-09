@@ -1,22 +1,27 @@
 extends Area2D
 class_name Customer
 
-# const BubbleColors = preload("res://utils/GlobalEnums.gd").BubbleColors
+const BubbleColors = preload("res://utils/GlobalEnums.gd").BubbleColors
 
 export var required_bubbles := {
-	"red": 1,
-	"green": 1,
-	"blue": 1,
-}
+	BubbleColors.RED: 1,
+	BubbleColors.GREEN: 1,
+	BubbleColors.BLUE: 1,
+} setget set_required_bubbles
 
 var collected_bubbles := {
-	"red": 0,
-	"green": 0,
-	"blue": 0,
+	BubbleColors.RED: 0,
+	BubbleColors.GREEN: 0,
+	BubbleColors.BLUE: 0,
 }
+
 
 func _ready() -> void:
 	pass
+
+
+func set_required_bubbles(required: Dictionary) -> void:
+	required_bubbles = required
 
 
 func _physics_process(delta: float) -> void:
@@ -26,7 +31,7 @@ func _physics_process(delta: float) -> void:
 			body.queue_free()
 
 
-func _eat_bubble(bubble_type: String) -> void:
+func _eat_bubble(bubble_type: int) -> void:
 	collected_bubbles[bubble_type] += 1
 	var done = true;
 	for bubble in required_bubbles:

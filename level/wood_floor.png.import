@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tmp_background.png-c81671202e2164b5944ea9a8a7492287.stex"
+path="res://.import/wood_floor.png-3a8a29be64aea65cc720f44ad698047a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://level/tmp_background.png"
-dest_files=[ "res://.import/tmp_background.png-c81671202e2164b5944ea9a8a7492287.stex" ]
+source_file="res://level/wood_floor.png"
+dest_files=[ "res://.import/wood_floor.png-3a8a29be64aea65cc720f44ad698047a.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=1
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false

@@ -1,9 +1,11 @@
 extends RigidBody2D;
 class_name Bubble
 
+const BubbleColors = preload("res://utils/GlobalEnums.gd").BubbleColors
+
 export var impulse_force := 1.0
 
-var bubble_type: String = "red" setget set_bubble_type
+var bubble_type: int = BubbleColors.RED setget set_bubble_type
 
 # Declare member variables here. Examples:
 # var a: int = 2
@@ -15,7 +17,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
-func set_bubble_type(type: String) -> void:
+func set_bubble_type(type: int) -> void:
 	bubble_type = type
 
 
