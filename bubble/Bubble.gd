@@ -1,11 +1,20 @@
-extends RigidBody2D;
+extends Area2D;
 class_name Bubble
 
 const BubbleColors = preload("res://utils/GlobalEnums.gd").BubbleColors
+const COLOR_MAP = {
+	BubbleColors.BLUE: Color("#c04287f5"),
+	BubbleColors.GREEN: Color("#c042f57b"),
+	BubbleColors.RED: Color("#c0f55142"),
+}
 
 export var impulse_force := 1.0
 
 var bubble_type: int = BubbleColors.RED setget set_bubble_type
+var velocity := Vector2.ZERO
+
+onready var sprite := $Sprite
+onready var tween := $Tween
 
 # Declare member variables here. Examples:
 # var a: int = 2
@@ -14,13 +23,29 @@ var bubble_type: int = BubbleColors.RED setget set_bubble_type
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	set_bubble_type(bubble_type)
+
+
+func _physics_process(delta: float) -> void:
+	position += velocity * delta
+
+
+func _update_position(updated: Vector2) -> void:
+	position = updated
+
+
+func move_to_target(target: Vector2) -> void:
+	print("position at start: %s, target: %s" % [position, target])
+	tween.interpolate_method(self, "_update_position", position, target, 0.5, Tween.TRANS_CUBIC, Tween.EASE_OUT) 
+	tween.start()
 
 
 func set_bubble_type(type: int) -> void:
 	bubble_type = type
+	if sprite:
+		sprite.modulate = COLOR_MAP[type]
 
 
 func fire(direction: Vector2) -> void:
-	apply_impulse(Vector2.ZERO, direction * impulse_force)
+	velocity += direction * impulse_force
 	pass

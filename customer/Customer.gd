@@ -25,7 +25,7 @@ func set_required_bubbles(required: Dictionary) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	for body in get_overlapping_bodies():
+	for body in get_overlapping_areas():
 		if body is Bubble:
 			_eat_bubble(body.bubble_type)
 			body.queue_free()
