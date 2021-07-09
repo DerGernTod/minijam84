@@ -9,10 +9,12 @@ export var bubble_spawn := Vector2(0, 0)
 
 var velocity := 0.0
 var cur_bubbles := []
+var ammo := 10
 
 onready var screen_width := get_viewport_rect().size.x
 onready var bubble_scene := preload("res://bubble/Bubble.tscn")
 onready var straw_top := $StrawTop
+onready var ammo_hud := $Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -38,11 +40,14 @@ func _physics_process(delta: float) -> void:
 
 
 func _create_bubble() -> void:
-	var new_bubble = bubble_scene.instance()
-	new_bubble.set_bubble_type(randi() % BubbleColors.size())
-	$StrawTop.add_child(new_bubble)
-	new_bubble.position = bubble_spawn
-	cur_bubbles.append(new_bubble)
+	ammo -= 1
+	if ammo >= 0:
+		ammo_hud.text = str(ammo)
+		var new_bubble = bubble_scene.instance()
+		new_bubble.set_bubble_type(randi() % BubbleColors.size())
+		$StrawTop.add_child(new_bubble)
+		new_bubble.position = bubble_spawn
+		cur_bubbles.append(new_bubble)
 	var target_pos = Vector2(-28, 0)
 	var i = 0;
 	for bubble in cur_bubbles:
@@ -59,3 +64,7 @@ func _fire_bubble(direction: Vector2) -> void:
 	oldest_bubble.global_position = old_pos
 	oldest_bubble.fire(direction)
 	_create_bubble()
+	
+	if cur_bubbles.size() == 0:
+		ammo_hud.text = "just a regular tea"
+		set_physics_process(false)
