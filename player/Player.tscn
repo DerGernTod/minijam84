@@ -12,7 +12,7 @@ extents = Vector2( 64, 88 )
 script = ExtResource( 2 )
 speed = 10000.0
 damping = 8.0
-bubble_spawn = Vector2( 64, -60 )
+bubble_spawn = Vector2( 64, 0 )
 
 [node name="StrawBottom" type="Sprite" parent="."]
 texture = ExtResource( 4 )
@@ -24,8 +24,10 @@ texture = ExtResource( 1 )
 position = Vector2( -16, 24 )
 shape = SubResource( 1 )
 
-[node name="StrawTop" type="Sprite" parent="."]
-position = Vector2( -8, -96 )
+[node name="StrawTop" type="Node2D" parent="."]
+position = Vector2( -15, -96 )
+
+[node name="Sprite" type="Sprite" parent="StrawTop"]
+position = Vector2( 63, 80 )
+rotation = -0.663225
 texture = ExtResource( 3 )
-centered = false
-offset = Vector2( -80, -15 )

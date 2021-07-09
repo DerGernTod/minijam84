@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://FPSCounter.gd" type="Script" id=1]
+
+[node name="FPSCounter" type="Label"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+text = "60"
+script = ExtResource( 1 )
