@@ -7,7 +7,7 @@
 [ext_resource path="res://player/cup_back.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 64, 88 )
+extents = Vector2( 48, 24 )
 
 [sub_resource type="LineShape2D" id=2]
 normal = Vector2( 0.989949, -0.141421 )
@@ -43,7 +43,6 @@ z_index = 1
 texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -16, 24 )
 shape = SubResource( 1 )
 
 [node name="StrawTop" type="Node2D" parent="."]

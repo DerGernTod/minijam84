@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://level/tmp_machine_ready.png" type="Texture" id=1]
+[ext_resource path="res://level/tmp_machine.png" type="Texture" id=2]
+[ext_resource path="res://level/tmp_machine_working.png" type="Texture" id=3]
+[ext_resource path="res://level/Machine.gd" type="Script" id=4]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 48, 168 )
+
+[node name="Machine" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+
+[node name="Red" type="Area2D" parent="."]
+position = Vector2( -104, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Red"]
+shape = SubResource( 1 )
+
+[node name="Green" type="Area2D" parent="."]
+position = Vector2( 8, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Green"]
+shape = SubResource( 1 )
+
+[node name="Blue" type="Area2D" parent="."]
+position = Vector2( 8, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blue"]
+shape = SubResource( 1 )
