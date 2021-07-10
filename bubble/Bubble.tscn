@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://bubble/tmp_bubble.png" type="Texture" id=1]
+[ext_resource path="res://bubble/bubble.png" type="Texture" id=1]
 [ext_resource path="res://bubble/Bubble.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 16.0
+radius = 11.2611
 
 [node name="Bubble" type="Area2D" groups=[
 "bubbles",
@@ -14,9 +14,13 @@ script = ExtResource( 2 )
 impulse_force = 750.0
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -42, -36 )
+scale = Vector2( 4, 4 )
 texture = ExtResource( 1 )
+offset = Vector2( 10, 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 2 )
 shape = SubResource( 1 )
 
 [node name="Tween" type="Tween" parent="."]

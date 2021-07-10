@@ -8,7 +8,7 @@ const BubbleColors = preload("res://utils/GlobalEnums.gd").BubbleColors
 
 export var bubble_color := BubbleColors.RED
 
-var _player_was_here
+var _player_was_here := false
 
 func _physics_process(delta: float) -> void:
 	var areas = get_overlapping_areas()

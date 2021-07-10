@@ -27,7 +27,7 @@ normal = Vector2( 0, 1 )
 script = ExtResource( 2 )
 speed = 10000.0
 damping = 8.0
-bubble_spawn = Vector2( 80, 0 )
+bubble_spawn = Vector2( 70, 0 )
 
 [node name="CupBack" type="Sprite" parent="."]
 scale = Vector2( 4, 4 )
@@ -35,7 +35,7 @@ texture = ExtResource( 6 )
 
 [node name="CupFront" type="Sprite" parent="."]
 scale = Vector2( 4, 4 )
-z_index = 1
+z_index = 2
 texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

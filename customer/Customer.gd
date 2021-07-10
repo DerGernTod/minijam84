@@ -9,9 +9,9 @@ const BubbleColors = preload("res://utils/GlobalEnums.gd").BubbleColors
 const control_bubble_scene = preload("res://customer/ControlBubble.tscn")
 # duplicated from Bubble.gd TODO: move to globals
 const COLOR_MAP = {
-	BubbleColors.BLUE: Color("#c04287f5"),
-	BubbleColors.GREEN: Color("#c042f57b"),
-	BubbleColors.RED: Color("#c0f55142"),
+	BubbleColors.BLUE: Color("#4287f5"),
+	BubbleColors.GREEN: Color("#eed80e"),
+	BubbleColors.RED: Color("#f55142"),
 }
 
 export var speed := 1

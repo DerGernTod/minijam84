@@ -4,9 +4,9 @@ class_name Player
 const BubbleColors = preload("res://utils/GlobalEnums.gd").BubbleColors
 # TODO: copied from Bubble.gd, make global!
 const COLOR_MAP = {
-	BubbleColors.BLUE: Color("#c04287f5"),
-	BubbleColors.GREEN: Color("#c042f57b"),
-	BubbleColors.RED: Color("#c0f55142"),
+	BubbleColors.BLUE: Color("#4287f5"),
+	BubbleColors.GREEN: Color("#eed80e"),
+	BubbleColors.RED: Color("#f55142"),
 }
 
 signal out_of_ammo
@@ -36,6 +36,7 @@ onready var ammo_hud := $Label
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	randomize()
+	yield($"/root/Main", "ready")
 	for i in 30:
 		add_ammo(randi() % BubbleColors.size())
 	for i in 4:
@@ -47,16 +48,19 @@ func add_ammo(type: int) -> void:
 		return
 	
 	ammo.push_back(type)
+	ammo_hud.text = str(ammo.size())
 	var cup_bubble = cup_bubble_scene.instance()
 	cup_bubble.modulate = COLOR_MAP[type]
 	cup_bubbles[type].push_back(cup_bubble)
-	yield($"/root/Main", "ready")
 	$"/root/Main".add_child(cup_bubble)
+	cup_bubble.global_position = global_position
 	
 
 func _remove_ammo() -> int:
-	var type = ammo.pop_front()
+	var ind = randi() % ammo.size()
+	var type = ammo[ind]
 	cup_bubbles[type].pop_front().queue_free()
+	ammo.remove(ind)
 	return type
 
 
@@ -89,7 +93,7 @@ func _create_bubble() -> void:
 		$StrawTop.add_child(new_bubble)
 		new_bubble.position = Vector2.ZERO
 		cur_bubbles.append(new_bubble)
-	var target_pos = Vector2(-28, 0)
+	var target_pos = Vector2(-24, 0)
 	var tween_time = 0
 	for i in cur_bubbles.size():
 		tween_time = cur_bubbles[i].move_to_target(bubble_spawn + target_pos * i)

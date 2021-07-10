@@ -1,16 +1,19 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://bubble/tmp_bubble.png" type="Texture" id=1]
+[ext_resource path="res://bubble/bubble.png" type="Texture" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 7.0976
+radius = 5.62632
 
 [node name="CupBubble" type="RigidBody2D"]
+z_index = 1
 gravity_scale = 50.0
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( 4.5, -2 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
+offset = Vector2( -2.75816, 1.46301 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

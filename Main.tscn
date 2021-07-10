@@ -14,6 +14,7 @@ script = ExtResource( 4 )
 [node name="Floor" type="Sprite" parent="."]
 position = Vector2( 0, 370.614 )
 scale = Vector2( 4, 4 )
+z_index = -20
 texture = ExtResource( 5 )
 centered = false
 region_enabled = true
@@ -22,6 +23,7 @@ region_rect = Rect2( 0, 0, 480, 270 )
 [node name="Counter" type="Sprite" parent="."]
 position = Vector2( 0, 176 )
 scale = Vector2( 4, 4 )
+z_index = -20
 texture = ExtResource( 2 )
 centered = false
 region_enabled = true

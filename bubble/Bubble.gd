@@ -3,9 +3,9 @@ class_name Bubble
 
 const BubbleColors = preload("res://utils/GlobalEnums.gd").BubbleColors
 const COLOR_MAP = {
-	BubbleColors.BLUE: Color("#c04287f5"),
-	BubbleColors.GREEN: Color("#c042f57b"),
-	BubbleColors.RED: Color("#c0f55142"),
+	BubbleColors.BLUE: Color("#4287f5"),
+	BubbleColors.GREEN: Color("#eed80e"),
+	BubbleColors.RED: Color("#f55142"),
 }
 
 export var impulse_force := 1.0
