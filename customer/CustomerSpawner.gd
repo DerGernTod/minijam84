@@ -30,11 +30,11 @@ func pause_enemies(pause: bool) -> void:
 		customer.set_physics_process(!pause)
 
 
-func _customer_suck_start() -> void:
+func _customer_suck_started() -> void:
 	pause_enemies(true)
 	
 
-func _customer_suck_end() -> void:
+func _customer_suck_ended() -> void:
 	pause_enemies(false)
 
 
@@ -43,8 +43,8 @@ func _spawn() -> void:
 	
 	var customer = customer_scene.instance()
 	$"/root/Main".add_child(customer)
-	customer.connect("suck_start", self, "_customer_suck_start")
-	customer.connect("suck_end", self, "_customer_suck_end")
+	customer.connect("suck_started", self, "_customer_suck_started")
+	customer.connect("suck_ended", self, "_customer_suck_ended")
 	customer.position = Vector2(rand_range(0, viewport_rect.x), viewport_rect.y * spawn_height_perc)
 
 	var total_num_requirements = floor(rand_range(1, difficulty))
