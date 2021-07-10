@@ -1,6 +1,13 @@
 extends Area2D
 class_name Player
+
 const BubbleColors = preload("res://utils/GlobalEnums.gd").BubbleColors
+# TODO: copied from Bubble.gd, make global!
+const COLOR_MAP = {
+	BubbleColors.BLUE: Color("#c04287f5"),
+	BubbleColors.GREEN: Color("#c042f57b"),
+	BubbleColors.RED: Color("#c0f55142"),
+}
 
 signal out_of_ammo
 
@@ -8,23 +15,48 @@ export var speed := 100.0
 export var damping := 1.0
 export var bounds := 50.0
 export var bubble_spawn := Vector2(0, 0)
+export var max_ammo := 30
 
 var velocity := 0.0
 var ammo := []
+var cup_bubbles = {
+	BubbleColors.RED: [],
+	BubbleColors.GREEN: [],
+	BubbleColors.BLUE: [],
+}
 var cur_bubbles = []
 var is_dead := false
 
 onready var screen_width := get_viewport_rect().size.x
 onready var bubble_scene := preload("res://bubble/Bubble.tscn")
+onready var cup_bubble_scene := preload("res://player/CupBubble.tscn")
 onready var straw_top := $StrawTop
 onready var ammo_hud := $Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for i in 10:
-		ammo.push_back(randi() % BubbleColors.size())
+	for i in 30:
+		_add_ammo(randi() % BubbleColors.size())
 	for i in 4:
 		_create_bubble()
+
+
+func _add_ammo(type: int) -> void:
+	if ammo.size() >= max_ammo:
+		return
+	
+	ammo.push_back(type)
+	var cup_bubble = cup_bubble_scene.instance()
+	cup_bubble.modulate = COLOR_MAP[type]
+	cup_bubbles[type].push_back(cup_bubble)
+	yield($"/root/Main", "ready")
+	$"/root/Main".add_child(cup_bubble)
+	
+
+func _remove_ammo() -> int:
+	var type = ammo.pop_front()
+	cup_bubbles[type].pop_front().queue_free()
+	return type
 
 
 func _physics_process(delta: float) -> void:
@@ -48,7 +80,7 @@ func _create_bubble() -> void:
 	var new_bubble = null
 	
 	if ammo.size() > 0:
-		var new_bubble_type = ammo.pop_front()
+		var new_bubble_type = _remove_ammo()
 		ammo_hud.text = str(ammo.size())
 		new_bubble = bubble_scene.instance()
 		new_bubble.set_bubble_type(new_bubble_type)
