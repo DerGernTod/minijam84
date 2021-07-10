@@ -44,21 +44,28 @@ func _physics_process(delta: float) -> void:
 
 func _create_bubble() -> void:
 	ammo -= 1
+	var new_bubble = null
+	
 	if ammo >= 0:
 		ammo_hud.text = str(ammo)
-		var new_bubble = bubble_scene.instance()
+		new_bubble = bubble_scene.instance()
 		new_bubble.set_bubble_type(randi() % BubbleColors.size())
+		new_bubble.visible = false
 		$StrawTop.add_child(new_bubble)
-		new_bubble.position = bubble_spawn
+		new_bubble.position = Vector2.ZERO
 		cur_bubbles.append(new_bubble)
 	var target_pos = Vector2(-28, 0)
-	var tweens = [];
+	var tween_time = 0
 	for i in cur_bubbles.size():
-		tweens.append(cur_bubbles[i].move_to_target(bubble_spawn + target_pos * i))
-		
-	for tween in tweens:
-		yield(tween, "completed")
-	yield(get_tree(), "idle_frame")
+		tween_time = cur_bubbles[i].move_to_target(bubble_spawn + target_pos * i)
+	
+	yield(get_tree().create_timer(tween_time * 0.3), "timeout")
+	
+	if new_bubble:
+		new_bubble.visible = true
+	
+	yield(get_tree().create_timer(tween_time * 0.7), "timeout")
+	
 
 func _fire_bubble(direction: Vector2) -> void:
 	var oldest_bubble = cur_bubbles.pop_front()

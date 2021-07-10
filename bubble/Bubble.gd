@@ -15,7 +15,7 @@ var bubble_type: int = BubbleColors.RED setget set_bubble_type
 var velocity := Vector2.ZERO
 
 onready var sprite := $Sprite
-onready var tween := $Tween
+onready var tween : Tween = $Tween
 
 # Declare member variables here. Examples:
 # var a: int = 2
@@ -36,10 +36,10 @@ func _update_position(updated: Vector2) -> void:
 	position = updated
 
 
-func move_to_target(target: Vector2) -> void:
+func move_to_target(target: Vector2) -> float:
 	tween.interpolate_method(self, "_update_position", position, target, tween_time, Tween.TRANS_CUBIC, Tween.EASE_OUT) 
 	tween.start()
-	yield(tween, "tween_completed")
+	return tween_time
 
 
 func set_bubble_type(type: int) -> void:
