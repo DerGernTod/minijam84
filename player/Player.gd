@@ -12,6 +12,7 @@ export var bubble_spawn := Vector2(0, 0)
 var velocity := 0.0
 var ammo := 10
 var cur_bubbles = []
+var is_dead := false
 
 onready var screen_width := get_viewport_rect().size.x
 onready var bubble_scene := preload("res://bubble/Bubble.tscn")
@@ -77,22 +78,24 @@ func _kill() -> void:
 	ammo_hud.text = "just a regular tea"
 	set_physics_process(false)
 	emit_signal("out_of_ammo")
+	is_dead = true
 
 func get_stunned(required_bubbles: Dictionary) -> void:
 	set_physics_process(false)
 	while not required_bubbles.empty():
 		var oldest_bubble = cur_bubbles.pop_front() as Bubble
-		if not oldest_bubble:
-			_kill()
-			return
 		var type = oldest_bubble.bubble_type
 		# as long as we're missing required bubbles AND there's an oldest bubble, suck it up
 		if required_bubbles.has(type):
 			required_bubbles[type] -= 1
 			if required_bubbles[type] <= 0:
 				required_bubbles.erase(type)
+		
 		oldest_bubble.queue_free()
 		yield(_create_bubble(), "completed")
+		if cur_bubbles.size() == 0:
+			_kill()
+			return
 	yield(get_tree(), "idle_frame")
 	
 	set_physics_process(true)

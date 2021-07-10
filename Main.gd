@@ -7,6 +7,5 @@ func _ready() -> void:
 	player.connect("out_of_ammo", self, "_end_game")
 	
 func _end_game() -> void:
-	if spawner:
-		spawner.queue_free()
+	spawner.pause_enemies(true)
 

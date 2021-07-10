@@ -33,7 +33,8 @@ func _physics_process(delta: float) -> void:
 		if body is Player:
 			emit_signal("suck_start")
 			yield(body.get_stunned(required_bubbles), "completed")
-			emit_signal("suck_end")
+			if not body.is_dead:
+				emit_signal("suck_end")
 			queue_free()
 
 
