@@ -10,7 +10,7 @@ export var bounds := 50.0
 export var bubble_spawn := Vector2(0, 0)
 
 var velocity := 0.0
-var ammo := 10
+var ammo := []
 var cur_bubbles = []
 var is_dead := false
 
@@ -21,6 +21,8 @@ onready var ammo_hud := $Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	for i in 10:
+		ammo.push_back(randi() % BubbleColors.size())
 	for i in 4:
 		_create_bubble()
 
@@ -43,13 +45,13 @@ func _physics_process(delta: float) -> void:
 
 
 func _create_bubble() -> void:
-	ammo -= 1
 	var new_bubble = null
 	
-	if ammo >= 0:
-		ammo_hud.text = str(ammo)
+	if ammo.size() > 0:
+		var new_bubble_type = ammo.pop_front()
+		ammo_hud.text = str(ammo.size())
 		new_bubble = bubble_scene.instance()
-		new_bubble.set_bubble_type(randi() % BubbleColors.size())
+		new_bubble.set_bubble_type(new_bubble_type)
 		new_bubble.visible = false
 		$StrawTop.add_child(new_bubble)
 		new_bubble.position = Vector2.ZERO
