@@ -35,13 +35,14 @@ onready var ammo_hud := $Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	randomize()
 	for i in 30:
-		_add_ammo(randi() % BubbleColors.size())
+		add_ammo(randi() % BubbleColors.size())
 	for i in 4:
 		_create_bubble()
 
 
-func _add_ammo(type: int) -> void:
+func add_ammo(type: int) -> void:
 	if ammo.size() >= max_ammo:
 		return
 	
