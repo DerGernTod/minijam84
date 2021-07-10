@@ -21,14 +21,21 @@ func _ready() -> void:
 
 func _increase_difficulty() -> void:
 	difficulty += 0.1
-	
+
+
+func pause_enemies(pause: bool) -> void:
+	spawn_timer.paused = pause
+	difficulty_timer.paused = pause
+	for customer in get_tree().get_nodes_in_group("customers"):
+		customer.set_physics_process(!pause)
+
 
 func _customer_suck_start() -> void:
-	pass
+	pause_enemies(true)
 	
 
 func _customer_suck_end() -> void:
-	pass
+	pause_enemies(false)
 
 
 func _spawn() -> void:
@@ -37,7 +44,7 @@ func _spawn() -> void:
 	var customer = customer_scene.instance()
 	$"/root/Main".add_child(customer)
 	customer.connect("suck_start", self, "_customer_suck_start")
-	customer.connect("suck_start", self, "_customer_suck_end")
+	customer.connect("suck_end", self, "_customer_suck_end")
 	customer.position = Vector2(rand_range(0, viewport_rect.x), viewport_rect.y * spawn_height_perc)
 
 	var total_num_requirements = floor(rand_range(1, difficulty))
