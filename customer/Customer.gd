@@ -61,10 +61,12 @@ func _chase_player(delta: float) -> void:
 			emit_signal("suck_started")
 			body.set_physics_process(false)
 			while not _is_satisfied:
-				pass
-				#todo: continue here
+				var bubble_type = yield(body.lose_bubble(), "completed")
+				if bubble_type < 0:
+					return
+				eat_bubble(bubble_type)
 			
-			yield(body.get_stunned(self), "completed")
+#			yield(body.get_stunned(self), "completed")
 			if not body.is_dead:
 				emit_signal("suck_ended")
 				body.set_physics_process(true)
@@ -80,6 +82,7 @@ func _check_satisfied() -> void:
 	if required_bubbles.empty():
 		emit_signal("satisfied")
 		_is_satisfied = true
+		_control_bubble_container.get_parent().queue_free()
 		_tween.interpolate_method(self, "_leave_shop", position, Vector2(randi() % int(_screen_size.x), _screen_size.y + 100), 8)
 		_tween.start()
 		yield(_tween, "tween_completed")

@@ -82,6 +82,9 @@ func _kill() -> void:
 
 
 func lose_bubble() -> int:
+	yield(get_tree(), "idle_frame")
+	if cur_bubbles.size() == 0:
+		return -1
 	var oldest_bubble = cur_bubbles.pop_front() as Bubble
 	var type = oldest_bubble.bubble_type
 	oldest_bubble.queue_free()
@@ -92,20 +95,20 @@ func lose_bubble() -> int:
 
 
 # TODO: we can't pass in customer here
-func get_stunned(customer: Customer) -> void:
-	var required_bubbles = customer.required_bubbles
-	set_physics_process(false)
-	while not required_bubbles.empty():
-		var oldest_bubble = cur_bubbles.pop_front() as Bubble
-		var type = oldest_bubble.bubble_type
-		# as long as we're missing required bubbles AND there's an oldest bubble, suck it up
-		customer.eat_bubble(type)
-		
-		oldest_bubble.queue_free()
-		yield(_create_bubble(), "completed")
-		if cur_bubbles.size() == 0:
-			_kill()
-			return
-	yield(get_tree(), "idle_frame")
-	
-	set_physics_process(true)
+#func get_stunned(customer: Customer) -> void:
+#	var required_bubbles = customer.required_bubbles
+#	set_physics_process(false)
+#	while not required_bubbles.empty():
+#		var oldest_bubble = cur_bubbles.pop_front() as Bubble
+#		var type = oldest_bubble.bubble_type
+#		# as long as we're missing required bubbles AND there's an oldest bubble, suck it up
+#		customer.eat_bubble(type)
+#
+#		oldest_bubble.queue_free()
+#		yield(_create_bubble(), "completed")
+#		if cur_bubbles.size() == 0:
+#			_kill()
+#			return
+#	yield(get_tree(), "idle_frame")
+#
+#	set_physics_process(true)
