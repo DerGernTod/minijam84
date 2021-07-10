@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tmp_straw_bottom.png-6107866bf92df6386abcf98c4cf0103e.stex"
+path="res://.import/wood_floor.png-3a8a29be64aea65cc720f44ad698047a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/tmp_straw_bottom.png"
-dest_files=[ "res://.import/tmp_straw_bottom.png-6107866bf92df6386abcf98c4cf0103e.stex" ]
+source_file="res://level/wood_floor.png"
+dest_files=[ "res://.import/wood_floor.png-3a8a29be64aea65cc720f44ad698047a.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=1
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0
