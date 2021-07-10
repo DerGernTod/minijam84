@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://customer/tmp_customer.png" type="Texture" id=1]
 [ext_resource path="res://customer/Customer.gd" type="Script" id=2]
+[ext_resource path="res://customer/tmp_order_bubble.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 80, 80 )
@@ -21,3 +22,24 @@ position = Vector2( 32, -176 )
 shape = SubResource( 1 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="OrderBubble" type="Sprite" parent="."]
+position = Vector2( 144, -304 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+
+[node name="GridContainer" type="GridContainer" parent="OrderBubble"]
+anchor_left = 0.187
+anchor_top = 0.312
+anchor_right = 0.812
+anchor_bottom = 0.625
+margin_left = -31.968
+margin_top = -31.968
+margin_right = -31.968
+margin_bottom = -32.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}

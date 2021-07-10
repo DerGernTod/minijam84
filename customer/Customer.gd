@@ -6,6 +6,13 @@ signal suck_ended
 signal satisfied
 
 const BubbleColors = preload("res://utils/GlobalEnums.gd").BubbleColors
+const control_bubble_scene = preload("res://customer/ControlBubble.tscn")
+# duplicated from Bubble.gd TODO: move to globals
+const COLOR_MAP = {
+	BubbleColors.BLUE: Color("#c04287f5"),
+	BubbleColors.GREEN: Color("#c042f57b"),
+	BubbleColors.RED: Color("#c0f55142"),
+}
 
 export var speed := 1
 export var required_bubbles := {
@@ -15,9 +22,15 @@ export var required_bubbles := {
 } setget set_required_bubbles
 
 var _is_satisfied = false
+var _control_bubbles := {
+	BubbleColors.RED: [],
+	BubbleColors.GREEN: [],
+	BubbleColors.BLUE: [],
+}
 
 onready var _screen_size = get_viewport_rect().size
 onready var _tween = $Tween
+onready var _control_bubble_container = $OrderBubble/GridContainer
 
 func _ready() -> void:
 	pass
@@ -25,6 +38,13 @@ func _ready() -> void:
 
 func set_required_bubbles(required: Dictionary) -> void:
 	required_bubbles = required
+	for color in required_bubbles:
+		for count in required_bubbles[color]:
+			var control_bubble = control_bubble_scene.instance()
+			_control_bubble_container.add_child(control_bubble)
+			control_bubble.modulate = COLOR_MAP[color]
+			_control_bubbles[color].push_back(control_bubble)
+
 
 
 func _chase_player(delta: float) -> void:
@@ -34,14 +54,20 @@ func _chase_player(delta: float) -> void:
 	
 	for body in get_overlapping_areas():
 		if body is Bubble and collision_mask & body.collision_layer:
-			_eat_bubble(body.bubble_type)
+			eat_bubble(body.bubble_type)
 			body.queue_free()
 		
 		if body is Player:
 			emit_signal("suck_started")
-			yield(body.get_stunned(required_bubbles), "completed")
+			body.set_physics_process(false)
+			while not _is_satisfied:
+				pass
+				#todo: continue here
+			
+			yield(body.get_stunned(self), "completed")
 			if not body.is_dead:
 				emit_signal("suck_ended")
+				body.set_physics_process(true)
 			_check_satisfied()
 
 
@@ -52,6 +78,7 @@ func _physics_process(delta: float) -> void:
 
 func _check_satisfied() -> void:
 	if required_bubbles.empty():
+		emit_signal("satisfied")
 		_is_satisfied = true
 		_tween.interpolate_method(self, "_leave_shop", position, Vector2(randi() % int(_screen_size.x), _screen_size.y + 100), 8)
 		_tween.start()
@@ -61,14 +88,16 @@ func _check_satisfied() -> void:
 
 func _leave_shop(new_pos: Vector2) -> void:
 	position = new_pos
-	
 
 
-func _eat_bubble(bubble_type: int) -> void:
+func eat_bubble(bubble_type: int) -> void:
 	if required_bubbles.has(bubble_type):
 		required_bubbles[bubble_type] -= 1
+		var control = _control_bubbles[bubble_type].pop_back()
+		control.queue_free()
 		if required_bubbles[bubble_type] <= 0:
 			required_bubbles.erase(bubble_type)
+			_control_bubbles.erase(bubble_type)
 	
 	_check_satisfied()
 

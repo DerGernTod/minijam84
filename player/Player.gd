@@ -80,16 +80,26 @@ func _kill() -> void:
 	emit_signal("out_of_ammo")
 	is_dead = true
 
-func get_stunned(required_bubbles: Dictionary) -> void:
+
+func lose_bubble() -> int:
+	var oldest_bubble = cur_bubbles.pop_front() as Bubble
+	var type = oldest_bubble.bubble_type
+	oldest_bubble.queue_free()
+	yield(_create_bubble(), "completed")
+	if cur_bubbles.size() == 0:
+		_kill()
+	return type
+
+
+# TODO: we can't pass in customer here
+func get_stunned(customer: Customer) -> void:
+	var required_bubbles = customer.required_bubbles
 	set_physics_process(false)
 	while not required_bubbles.empty():
 		var oldest_bubble = cur_bubbles.pop_front() as Bubble
 		var type = oldest_bubble.bubble_type
 		# as long as we're missing required bubbles AND there's an oldest bubble, suck it up
-		if required_bubbles.has(type):
-			required_bubbles[type] -= 1
-			if required_bubbles[type] <= 0:
-				required_bubbles.erase(type)
+		customer.eat_bubble(type)
 		
 		oldest_bubble.queue_free()
 		yield(_create_bubble(), "completed")
