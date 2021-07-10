@@ -9,6 +9,7 @@ const COLOR_MAP = {
 }
 
 export var impulse_force := 1.0
+export var tween_time := 0.5
 
 var bubble_type: int = BubbleColors.RED setget set_bubble_type
 var velocity := Vector2.ZERO
@@ -23,6 +24,7 @@ onready var tween := $Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	collision_layer = 0
 	set_bubble_type(bubble_type)
 
 
@@ -35,9 +37,9 @@ func _update_position(updated: Vector2) -> void:
 
 
 func move_to_target(target: Vector2) -> void:
-	print("position at start: %s, target: %s" % [position, target])
-	tween.interpolate_method(self, "_update_position", position, target, 0.5, Tween.TRANS_CUBIC, Tween.EASE_OUT) 
+	tween.interpolate_method(self, "_update_position", position, target, tween_time, Tween.TRANS_CUBIC, Tween.EASE_OUT) 
 	tween.start()
+	yield(tween, "tween_completed")
 
 
 func set_bubble_type(type: int) -> void:
@@ -47,5 +49,6 @@ func set_bubble_type(type: int) -> void:
 
 
 func fire(direction: Vector2) -> void:
+	collision_layer = 1
 	velocity += direction * impulse_force
 	pass

@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "GlobalEnums",
 "language": "GDScript",
 "path": "res://utils/GlobalEnums.gd"
+}, {
+"base": "Area2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://player/Player.gd"
 } ]
 _global_script_class_icons={
 "Bubble": "",
 "Customer": "",
-"GlobalEnums": ""
+"GlobalEnums": "",
+"Player": ""
 }
 
 [application]

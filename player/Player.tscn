@@ -12,7 +12,7 @@ extents = Vector2( 64, 88 )
 script = ExtResource( 2 )
 speed = 10000.0
 damping = 8.0
-bubble_spawn = Vector2( 110, 0 )
+bubble_spawn = Vector2( 80, 0 )
 
 [node name="StrawBottom" type="Sprite" parent="."]
 texture = ExtResource( 4 )
@@ -41,6 +41,7 @@ margin_right = 10.0
 margin_bottom = 54.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "testtext"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

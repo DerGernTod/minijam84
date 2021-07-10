@@ -7,7 +7,7 @@
 extents = Vector2( 80, 80 )
 
 [node name="Customer" type="Area2D" groups=[
-"customer",
+"customers",
 ]]
 collision_layer = 2
 script = ExtResource( 2 )
