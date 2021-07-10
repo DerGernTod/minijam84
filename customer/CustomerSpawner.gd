@@ -23,11 +23,21 @@ func _increase_difficulty() -> void:
 	difficulty += 0.1
 	
 
+func _customer_suck_start() -> void:
+	pass
+	
+
+func _customer_suck_end() -> void:
+	pass
+
+
 func _spawn() -> void:
 	spawn_timer.wait_time = init_wait_time / difficulty
 	
 	var customer = customer_scene.instance()
 	$"/root/Main".add_child(customer)
+	customer.connect("suck_start", self, "_customer_suck_start")
+	customer.connect("suck_start", self, "_customer_suck_end")
 	customer.position = Vector2(rand_range(0, viewport_rect.x), viewport_rect.y * spawn_height_perc)
 
 	var total_num_requirements = floor(rand_range(1, difficulty))

@@ -1,6 +1,9 @@
 extends Area2D
 class_name Customer
 
+signal suck_start
+signal suck_end
+
 const BubbleColors = preload("res://utils/GlobalEnums.gd").BubbleColors
 
 export var speed := 1
@@ -28,12 +31,9 @@ func _physics_process(delta: float) -> void:
 			_eat_bubble(body.bubble_type)
 			body.queue_free()
 		if body is Player:
-			var customers = get_tree().get_nodes_in_group("customers")
-			for customer in customers:
-				customer.set_physics_process(false)
+			emit_signal("suck_start")
 			yield(body.get_stunned(required_bubbles), "completed")
-			for customer in customers:
-				customer.set_physics_process(true)
+			emit_signal("suck_end")
 			queue_free()
 
 
