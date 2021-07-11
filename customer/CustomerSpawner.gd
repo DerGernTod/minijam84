@@ -28,7 +28,7 @@ func pause_enemies(pause: bool) -> void:
 	spawn_timer.paused = pause
 	difficulty_timer.paused = pause
 	for customer in get_tree().get_nodes_in_group("customers"):
-		customer.set_physics_process(!pause)
+		customer.set_paused(pause)
 
 
 func _customer_suck_started() -> void:
