@@ -209,7 +209,6 @@ volume_db = 4.0
 visible = false
 scale = Vector2( 4, 4 )
 frames = SubResource( 13 )
-frame = 1
 playing = true
 
 [node name="RunningSound" type="AudioStreamPlayer" parent="."]
