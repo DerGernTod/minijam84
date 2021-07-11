@@ -30,6 +30,7 @@ onready var audio_shoot := preload("res://player/shoot.ogg")
 onready var straw_top := $StrawTop
 onready var audio_player := $ShootAudioPlayer
 onready var audio_player_move := $MoveAudioPlayer
+var init_face_pos
 onready var anim := $AnimatedSprite
 
 # Called when the node enters the scene tree for the first time.
@@ -91,6 +92,8 @@ func _physics_process(delta: float) -> void:
 	# cur_bubble.position = bubble_spawn
 	
 	var mouse_pos = get_viewport().get_mouse_position()
+	var face_target = global_position + (mouse_pos - global_position).normalized() * 10
+	anim.global_position = lerp(anim.global_position, face_target, delta * 5)
 	$StrawTop.look_at(mouse_pos)
 	if Input.is_action_just_pressed("ui_accept"):
 		var target = mouse_pos - $StrawTop.global_position
