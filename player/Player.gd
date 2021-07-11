@@ -5,7 +5,7 @@ const BubbleColors = preload("res://utils/GlobalEnums.gd").BubbleColors
 # TODO: copied from Bubble.gd, make global!
 const COLOR_MAP = {
 	BubbleColors.BLUE: Color("#4287f5"),
-	BubbleColors.GREEN: Color("#eed80e"),
+	BubbleColors.GREEN: Color("#42f57b"),
 	BubbleColors.RED: Color("#f55142"),
 }
 
