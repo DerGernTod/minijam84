@@ -39,8 +39,6 @@ func _ready() -> void:
 	yield($"/root/Main", "ready")
 	for i in 30:
 		add_ammo(randi() % BubbleColors.size())
-	for i in 4:
-		_create_bubble()
 
 
 func add_ammo(type: int) -> void:
@@ -53,6 +51,9 @@ func add_ammo(type: int) -> void:
 	cup_bubbles[type].push_back(cup_bubble)
 	$"/root/Main".add_child(cup_bubble)
 	cup_bubble.global_position = global_position
+	
+	if cur_bubbles.size() < 4:
+		_create_bubble()
 	
 	
 func set_stunned(stunned: bool, origin: Vector2 = Vector2.ZERO) -> void:
@@ -118,7 +119,7 @@ func _create_bubble() -> void:
 	
 	yield(get_tree().create_timer(tween_time * 0.3), "timeout")
 	
-	if new_bubble:
+	if new_bubble != null:
 		new_bubble.visible = true
 	
 	yield(get_tree().create_timer(tween_time * 0.7), "timeout")

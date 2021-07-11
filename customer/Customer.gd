@@ -30,6 +30,11 @@ onready var _sprite = $Sprite
 
 func _ready() -> void:
 	pass
+	
+	
+func set_paused(paused: bool) -> void:
+	set_physics_process(!paused)
+	_sprite.playing = !paused
 
 
 func set_required_bubbles(required: Dictionary) -> void:
