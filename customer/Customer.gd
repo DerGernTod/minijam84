@@ -26,7 +26,7 @@ onready var _screen_size = get_viewport_rect().size
 onready var _tween = $Tween
 onready var _control_bubble_container = $OrderBubble/GridContainer
 onready var _audio = $AudioStreamPlayer2D
-
+onready var _sprite = $Sprite
 
 func _ready() -> void:
 	pass
@@ -47,7 +47,10 @@ func _chase_player(delta: float) -> void:
 	var player_pos = $"/root/Main/Player/CollisionShape2D".global_position
 	var target_dir = player_pos - position
 	position += speed * target_dir.normalized() * delta
-	
+	if target_dir.x > 0: 
+		_sprite.scale.x = -4
+	else:
+		_sprite.scale.x = 4
 	for body in get_overlapping_areas():
 		if body is Bubble and collision_mask & body.collision_layer:
 			eat_bubble(body.bubble_type)
@@ -79,7 +82,14 @@ func _check_satisfied() -> void:
 		emit_signal("satisfied")
 		_is_satisfied = true
 		_control_bubble_container.get_parent().queue_free()
-		_tween.interpolate_method(self, "_leave_shop", position, Vector2(randi() % int(_screen_size.x), _screen_size.y + 100), 8)
+		var target = Vector2(rand_range(_screen_size.x * 0.25, _screen_size.x * 0.75), _screen_size.y + 100)
+		var target_dir = target - global_position
+		if target_dir.x > 0: 
+			_sprite.scale.x = -4
+		else:
+			_sprite.scale.x = 4
+		
+		_tween.interpolate_method(self, "_leave_shop", position, target, target_dir.length() / 500)
 		_tween.start()
 		yield(_tween, "tween_completed")
 		_kill()
