@@ -1,9 +1,37 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://customer/customer.png" type="Texture" id=1]
 [ext_resource path="res://customer/Customer.gd" type="Script" id=2]
 [ext_resource path="res://customer/order_bubble.png" type="Texture" id=3]
 [ext_resource path="res://customer/eat.ogg" type="AudioStream" id=4]
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 2
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 64, 128 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 2
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 64, 128 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 2
+atlas = ExtResource( 1 )
+region = Rect2( 128, 0, 64, 128 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 2
+atlas = ExtResource( 1 )
+region = Rect2( 192, 0, 64, 128 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 54.7143, 54.8571 )
@@ -16,10 +44,11 @@ collision_layer = 2
 script = ExtResource( 2 )
 speed = 100
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 2.37814, 67.7352 )
 scale = Vector2( 4, 4 )
-texture = ExtResource( 1 )
+frames = SubResource( 6 )
+playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 2.42855, -2.28571 )

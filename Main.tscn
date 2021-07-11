@@ -79,6 +79,29 @@ align = 2
 [node name="GameOver" parent="CanvasLayer" instance=ExtResource( 8 )]
 modulate = Color( 1, 1, 1, 0 )
 
+[node name="GameOver" parent="CanvasLayer/GameOver/VBoxContainer" index="0"]
+margin_right = 1920.0
+
+[node name="VBoxContainer" parent="CanvasLayer/GameOver/VBoxContainer" index="1"]
+margin_right = 1920.0
+
+[node name="SatisfiedCustomers" parent="CanvasLayer/GameOver/VBoxContainer/VBoxContainer" index="0"]
+margin_right = 1920.0
+
+[node name="SatisfiedCustomersCount" parent="CanvasLayer/GameOver/VBoxContainer/VBoxContainer" index="1"]
+margin_right = 1920.0
+
+[node name="HBoxContainer" parent="CanvasLayer/GameOver/VBoxContainer" index="2"]
+margin_right = 1920.0
+
+[node name="MainMenu" parent="CanvasLayer/GameOver/VBoxContainer/HBoxContainer" index="0"]
+margin_left = 354.0
+margin_right = 604.0
+
+[node name="PlayAgain" parent="CanvasLayer/GameOver/VBoxContainer/HBoxContainer" index="1"]
+margin_left = 1316.0
+margin_right = 1566.0
+
 [connection signal="out_of_ammo" from="Player" to="Machine" method="_on_Player_stunned" binds= [ true ]]
 [connection signal="stun_ended" from="Player" to="Machine" method="_on_Player_stunned" binds= [ false ]]
 [connection signal="stun_started" from="Player" to="Machine" method="_on_Player_stunned" binds= [ true ]]
