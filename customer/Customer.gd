@@ -59,7 +59,7 @@ func _chase_player(delta: float) -> void:
 		
 		if body is Player:
 			emit_signal("suck_started")
-			body.set_physics_process(false)
+			body.set_stunned(true)
 			while not _is_satisfied:
 				var bubble_type = yield(body.lose_bubble(), "completed")
 				if bubble_type < 0:
@@ -69,7 +69,7 @@ func _chase_player(delta: float) -> void:
 #			yield(body.get_stunned(self), "completed")
 			if not body.is_dead:
 				emit_signal("suck_ended")
-				body.set_physics_process(true)
+				body.set_stunned(false)
 			_check_satisfied()
 
 

@@ -84,5 +84,7 @@ func _handle_action_press() -> void:
 			_anim_sprite.frame = 0
 
 
-func _on_Player_out_of_ammo() -> void:
-	set_physics_process(false)
+func _on_Player_stunned(stunned: bool) -> void:
+	set_physics_process(!stunned)
+	if _active_button:
+		_active_button.modulate = Color.white if stunned else Color.green

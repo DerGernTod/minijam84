@@ -10,6 +10,8 @@ const COLOR_MAP = {
 }
 
 signal out_of_ammo
+signal stun_started
+signal stun_ended
 
 export var speed := 100.0
 export var damping := 1.0
@@ -55,6 +57,14 @@ func add_ammo(type: int) -> void:
 	$"/root/Main".add_child(cup_bubble)
 	cup_bubble.global_position = global_position
 	
+	
+func set_stunned(stunned: bool) -> void:
+	set_physics_process(!stunned)
+	if stunned:
+		emit_signal("stun_started")
+	else:
+		emit_signal("stun_ended")
+
 
 func _remove_ammo() -> int:
 	var ind = randi() % ammo.size()

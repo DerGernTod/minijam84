@@ -8,4 +8,3 @@ func _ready() -> void:
 	
 func _end_game() -> void:
 	spawner.pause_enemies(true)
-
