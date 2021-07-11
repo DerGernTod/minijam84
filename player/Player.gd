@@ -2,12 +2,6 @@ extends Area2D
 class_name Player
 
 const BubbleColors = preload("res://utils/GlobalEnums.gd").BubbleColors
-# TODO: copied from Bubble.gd, make global!
-const COLOR_MAP = {
-	BubbleColors.BLUE: Color("#4287f5"),
-	BubbleColors.GREEN: Color("#eed80e"),
-	BubbleColors.RED: Color("#f55142"),
-}
 
 signal out_of_ammo
 signal stun_started
@@ -52,7 +46,7 @@ func add_ammo(type: int) -> void:
 	
 	ammo.push_back(type)
 	var cup_bubble = cup_bubble_scene.instance()
-	cup_bubble.modulate = COLOR_MAP[type]
+	cup_bubble.modulate = Globals.COLOR_MAP[type]
 	cup_bubbles[type].push_back(cup_bubble)
 	$"/root/Main".add_child(cup_bubble)
 	cup_bubble.global_position = global_position

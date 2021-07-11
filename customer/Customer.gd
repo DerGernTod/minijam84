@@ -7,12 +7,6 @@ signal satisfied
 
 const BubbleColors = preload("res://utils/GlobalEnums.gd").BubbleColors
 const control_bubble_scene = preload("res://customer/ControlBubble.tscn")
-# duplicated from Bubble.gd TODO: move to globals
-const COLOR_MAP = {
-	BubbleColors.BLUE: Color("#4287f5"),
-	BubbleColors.GREEN: Color("#eed80e"),
-	BubbleColors.RED: Color("#f55142"),
-}
 
 export var speed := 1
 export var required_bubbles := {
@@ -44,7 +38,7 @@ func set_required_bubbles(required: Dictionary) -> void:
 		for count in required_bubbles[color]:
 			var control_bubble = control_bubble_scene.instance()
 			_control_bubble_container.add_child(control_bubble)
-			control_bubble.modulate = COLOR_MAP[color]
+			control_bubble.modulate = Globals.COLOR_MAP[color]
 			_control_bubbles[color].push_back(control_bubble)
 
 
