@@ -49,6 +49,7 @@ margin_bottom = 0.0
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GameOver" parent="CanvasLayer" instance=ExtResource( 8 )]
+modulate = Color( 1, 1, 1, 0 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 anchor_right = 1.0
