@@ -57,6 +57,8 @@ func add_ammo(type: int) -> void:
 func set_stunned(stunned: bool, origin: Vector2 = Vector2.ZERO) -> void:
 	set_physics_process(!stunned)
 	if stunned:
+		velocity = 0
+		audio_player_move.stop()
 		anim.frame = 1
 		emit_signal("stun_started")
 		straw_top.look_at(origin)
@@ -74,6 +76,10 @@ func _remove_ammo() -> int:
 
 
 func _physics_process(delta: float) -> void:
+	if abs(velocity) > 5 and not audio_player_move.playing:
+		audio_player_move.play()
+	if abs(velocity) <= 5:
+		audio_player_move.stop()
 	if Input.is_action_pressed("ui_left"):
 		velocity -= speed * delta
 	if Input.is_action_pressed("ui_right"):

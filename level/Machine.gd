@@ -100,7 +100,7 @@ func _handle_action_press() -> void:
 			yield(get_tree().create_timer(processing_time), "timeout")
 			_audio_running.stop()
 			_spawn_bubbles(_processing_color)
-			_audio.play(0)
+			_audio.play()
 			_state = MachineState.READY
 			if _active_button == colors[-1]:
 				_active_button.set_active(true)
@@ -110,6 +110,7 @@ func _handle_action_press() -> void:
 		MachineState.READY:
 			if _active_button != colors[-1]:
 				return
+			_audio.play()
 			for bubble in _cup_bubbles:
 				bubble.queue_free()
 				yield(get_tree(), "idle_frame")
@@ -122,5 +123,6 @@ func _handle_action_press() -> void:
 
 func _on_Player_stunned(stunned: bool) -> void:
 	set_physics_process(!stunned)
-	if _active_button:
+	if (_active_button == colors[-1] and _state == MachineState.READY)\
+		or (_active_button != colors[-1] and _active_button and _state == MachineState.IDLE):
 		_active_button.set_active(!stunned)

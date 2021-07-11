@@ -60,7 +60,7 @@ func _chase_player(delta: float) -> void:
 				var bubble_type = yield(body.lose_bubble(), "completed")
 				if bubble_type < 0:
 					return
-				eat_bubble(bubble_type)
+				eat_bubble(bubble_type, true)
 			
 #			yield(body.get_stunned(self), "completed")
 			if not body.is_dead:
@@ -89,9 +89,11 @@ func _leave_shop(new_pos: Vector2) -> void:
 	position = new_pos
 
 
-func eat_bubble(bubble_type: int) -> void:
-	_audio.play(0)
-	if required_bubbles.has(bubble_type):
+func eat_bubble(bubble_type: int, always_play_sound = false) -> void:
+	var is_required_bubble = required_bubbles.has(bubble_type)
+	if always_play_sound or is_required_bubble:
+		_audio.play(0)
+	if is_required_bubble:
 		required_bubbles[bubble_type] -= 1
 		var control = _control_bubbles[bubble_type].pop_back()
 		control.queue_free()
