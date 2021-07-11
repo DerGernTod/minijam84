@@ -128,7 +128,6 @@ func _fire_bubble(direction: Vector2) -> void:
 		_kill()
 
 func _kill() -> void:
-	ammo_hud.text = "just a regular tea"
 	set_physics_process(false)
 	emit_signal("out_of_ammo")
 	is_dead = true

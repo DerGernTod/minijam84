@@ -24,3 +24,7 @@ func _on_CustomerSpawner_customer_satisfied() -> void:
 	score += 1
 	game_over_score.text = str(score)
 	ingame_score.text = str(score)
+
+
+func _on_MainMenu_button_up() -> void:
+	get_tree().change_scene("res://ui/MainMenu.tscn")

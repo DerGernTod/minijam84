@@ -79,6 +79,7 @@ align = 2
 [connection signal="stun_ended" from="Player" to="Machine" method="_on_Player_stunned" binds= [ false ]]
 [connection signal="stun_started" from="Player" to="Machine" method="_on_Player_stunned" binds= [ true ]]
 [connection signal="customer_satisfied" from="CustomerSpawner" to="." method="_on_CustomerSpawner_customer_satisfied"]
+[connection signal="button_up" from="CanvasLayer/GameOver/VBoxContainer/HBoxContainer/MainMenu" to="." method="_on_MainMenu_button_up"]
 [connection signal="button_up" from="CanvasLayer/GameOver/VBoxContainer/HBoxContainer/PlayAgain" to="." method="_on_PlayAgain_button_up"]
 
 [editable path="CanvasLayer/GameOver"]
