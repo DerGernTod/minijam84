@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/515615__mrthenoronha__8-bit-game-theme.wav-b168c7aff4fb617eed1b460f07308e45.sample"
+
+[deps]
+
+source_file="res://515615__mrthenoronha__8-bit-game-theme.wav"
+dest_files=[ "res://.import/515615__mrthenoronha__8-bit-game-theme.wav-b168c7aff4fb617eed1b460f07308e45.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

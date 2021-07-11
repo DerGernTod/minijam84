@@ -51,6 +51,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Globals="*res://utils/Globals.gd"
+BackgroundMusic="*res://BackgroundMusic.tscn"
 
 [display]
 

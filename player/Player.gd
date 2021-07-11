@@ -77,7 +77,8 @@ func _remove_ammo() -> int:
 
 func _physics_process(delta: float) -> void:
 	if abs(velocity) > 5 and not audio_player_move.playing:
-		audio_player_move.play()
+		pass
+		#audio_player_move.play()
 	if abs(velocity) <= 5:
 		audio_player_move.stop()
 	if Input.is_action_pressed("ui_left"):
