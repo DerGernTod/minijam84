@@ -28,7 +28,8 @@ onready var bubble_scene := preload("res://bubble/Bubble.tscn")
 onready var cup_bubble_scene := preload("res://player/CupBubble.tscn")
 onready var audio_shoot := preload("res://player/shoot.ogg")
 onready var straw_top := $StrawTop
-onready var audio_player := $AudioStreamPlayer2D
+onready var audio_player := $ShootAudioPlayer
+onready var audio_player_move := $MoveAudioPlayer
 onready var anim := $AnimatedSprite
 
 # Called when the node enters the scene tree for the first time.

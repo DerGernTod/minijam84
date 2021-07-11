@@ -96,11 +96,11 @@ func _handle_action_press() -> void:
 			_state = MachineState.RUNNING
 			_anim_sprite.visible = true
 			_active_button.set_active(false)
-			_audio.stream = _audio_start
 			_audio_running.play(0)
 			yield(get_tree().create_timer(processing_time), "timeout")
 			_audio_running.stop()
 			_spawn_bubbles(_processing_color)
+			_audio.play(0)
 			_state = MachineState.READY
 			if _active_button == colors[-1]:
 				_active_button.set_active(true)
