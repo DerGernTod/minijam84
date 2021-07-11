@@ -3,6 +3,8 @@ extends Node2D
 const customer_scene := preload("res://customer/Customer.tscn")
 const BubbleColors = preload("res://utils/GlobalEnums.gd").BubbleColors
 
+signal customer_satisfied
+
 export var spawn_height_perc := 0.8
 
 onready var spawn_timer := $SpawnTimer
@@ -35,6 +37,10 @@ func _customer_suck_started() -> void:
 
 func _customer_suck_ended() -> void:
 	pause_enemies(false)
+	
+
+func _customer_satisfied() -> void:
+	emit_signal("customer_satisfied")
 
 
 func _spawn() -> void:
@@ -44,6 +50,7 @@ func _spawn() -> void:
 	$"/root/Main".add_child(customer)
 	customer.connect("suck_started", self, "_customer_suck_started")
 	customer.connect("suck_ended", self, "_customer_suck_ended")
+	customer.connect("satisfied", self, "_customer_satisfied")
 	customer.position = Vector2(rand_range(0, viewport_rect.x), viewport_rect.y * spawn_height_perc)
 
 	var total_num_requirements = floor(rand_range(1, difficulty))

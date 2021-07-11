@@ -1,0 +1,106 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://fonts/OldLondon.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://fonts/BaksoSapi.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://fonts/button_font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://ui/GameOver.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 148
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 96
+font_data = ExtResource( 2 )
+
+[node name="GameOver" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 1915.0
+margin_bottom = 1075.0
+color = Color( 0.172549, 0.172549, 0.172549, 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOver" type="Label" parent="VBoxContainer"]
+margin_right = 1920.0
+margin_bottom = 357.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+text = "Now I'm just a regular tea..."
+align = 1
+valign = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 361.0
+margin_right = 1920.0
+margin_bottom = 718.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SatisfiedCustomers" type="Label" parent="VBoxContainer/VBoxContainer"]
+margin_right = 1920.0
+margin_bottom = 176.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+text = "Satisfied customers"
+align = 1
+
+[node name="SatisfiedCustomersCount" type="Label" parent="VBoxContainer/VBoxContainer"]
+margin_top = 180.0
+margin_right = 1920.0
+margin_bottom = 357.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 722.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MainMenu" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 354.0
+margin_top = 129.0
+margin_right = 604.0
+margin_bottom = 229.0
+rect_min_size = Vector2( 250, 100 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 3 )
+text = "Main Menu"
+
+[node name="PlayAgain" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 1316.0
+margin_top = 129.0
+margin_right = 1566.0
+margin_bottom = 229.0
+rect_min_size = Vector2( 250, 100 )
+size_flags_horizontal = 6
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 3 )
+text = "Play Again"
+
+[node name="Tween" type="Tween" parent="."]

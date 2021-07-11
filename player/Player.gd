@@ -33,7 +33,6 @@ onready var screen_width := get_viewport_rect().size.x
 onready var bubble_scene := preload("res://bubble/Bubble.tscn")
 onready var cup_bubble_scene := preload("res://player/CupBubble.tscn")
 onready var straw_top := $StrawTop
-onready var ammo_hud := $Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -50,7 +49,6 @@ func add_ammo(type: int) -> void:
 		return
 	
 	ammo.push_back(type)
-	ammo_hud.text = str(ammo.size())
 	var cup_bubble = cup_bubble_scene.instance()
 	cup_bubble.modulate = COLOR_MAP[type]
 	cup_bubbles[type].push_back(cup_bubble)
@@ -96,7 +94,6 @@ func _create_bubble() -> void:
 	
 	if ammo.size() > 0:
 		var new_bubble_type = _remove_ammo()
-		ammo_hud.text = str(ammo.size())
 		new_bubble = bubble_scene.instance()
 		new_bubble.set_bubble_type(new_bubble_type)
 		new_bubble.visible = false
