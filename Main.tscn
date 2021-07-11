@@ -44,6 +44,7 @@ spawn_height_perc = 1.0
 wait_time = 5.0
 
 [node name="FPSCounter" parent="." instance=ExtResource( 3 )]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 0.0

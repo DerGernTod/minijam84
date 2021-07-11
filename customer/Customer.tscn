@@ -5,35 +5,35 @@
 [ext_resource path="res://customer/order_bubble.png" type="Texture" id=3]
 [ext_resource path="res://customer/eat.ogg" type="AudioStream" id=4]
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=1]
 flags = 2
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 64, 128 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=2]
 flags = 2
 atlas = ExtResource( 1 )
 region = Rect2( 64, 0, 64, 128 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=3]
 flags = 2
 atlas = ExtResource( 1 )
 region = Rect2( 128, 0, 64, 128 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=4]
 flags = 2
 atlas = ExtResource( 1 )
 region = Rect2( 192, 0, 64, 128 )
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 54.7143, 54.8571 )
 
 [node name="Customer" type="Area2D" groups=[
@@ -47,13 +47,12 @@ speed = 100
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 2.37814, 67.7352 )
 scale = Vector2( 4, 4 )
-frames = SubResource( 6 )
-frame = 2
+frames = SubResource( 5 )
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 2.42855, -2.28571 )
-shape = SubResource( 1 )
+shape = SubResource( 6 )
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -63,14 +62,12 @@ scale = Vector2( 4, 4 )
 texture = ExtResource( 3 )
 
 [node name="GridContainer" type="GridContainer" parent="OrderBubble"]
-anchor_left = 0.187
-anchor_top = 0.312
-anchor_right = 0.812
-anchor_bottom = 0.625
-margin_left = -21.9003
-margin_top = -21.1005
-margin_right = -16.2752
-margin_bottom = -20.8035
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -13.5
+margin_top = -11.0
+margin_right = -23.5
+margin_bottom = -32.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_constants/vseparation = 2
