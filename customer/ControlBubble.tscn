@@ -5,7 +5,7 @@
 [node name="ControlBubble" type="TextureRect"]
 margin_right = 5.0
 margin_bottom = 5.0
-rect_min_size = Vector2( 1, 1 )
+rect_min_size = Vector2( 5, 5 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 1 )
