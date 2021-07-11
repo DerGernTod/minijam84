@@ -25,8 +25,8 @@ normal = Vector2( 0, 1 )
 
 [node name="Player" type="Area2D"]
 script = ExtResource( 2 )
-speed = 10000.0
-damping = 8.0
+speed = 30000.0
+damping = 20.0
 bubble_spawn = Vector2( 70, 0 )
 
 [node name="CupBack" type="Sprite" parent="."]

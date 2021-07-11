@@ -32,12 +32,12 @@ func _player_entered(bubble_type: int) -> void:
 	_prio_queue.push_back(bubble_type)
 
 	if _active_button:
-		_active_button.modulate = Color.white
+		_active_button.set_active(false)
 	
 	_active_button = colors[bubble_type]
 	
 	if _state != MachineState.RUNNING:
-		_active_button.modulate = Color.green
+		_active_button.set_active(true)
 
 
 func _player_left(bubble_type: int) -> void:
@@ -45,14 +45,14 @@ func _player_left(bubble_type: int) -> void:
 	_prio_queue.remove(id)
 	
 	if _active_button == colors[bubble_type]:
-		_active_button.modulate = Color.white
+		_active_button.set_active(false)
 	if _prio_queue.size() == 0:
 		_active_button = null
 	else:
 		var type = _prio_queue[_prio_queue.size() - 1]
 		_active_button = colors[type]
 		if _state != MachineState.RUNNING:
-			_active_button.modulate = Color.green
+			_active_button.set_active(true)
 
 
 func _physics_process(delta: float) -> void:
@@ -68,10 +68,10 @@ func _handle_action_press() -> void:
 			_processing_color = _active_button.bubble_color
 			_state = MachineState.RUNNING
 			_anim_sprite.frame = 1
-			_active_button.modulate = Color.white
+			_active_button.set_active(false)
 			yield(get_tree().create_timer(processing_time), "timeout")
 			if _active_button:
-				_active_button.modulate = Color.green
+				_active_button.set_active(true)
 			_state = MachineState.READY
 			_anim_sprite.frame = 2
 		MachineState.RUNNING:
@@ -87,4 +87,4 @@ func _handle_action_press() -> void:
 func _on_Player_stunned(stunned: bool) -> void:
 	set_physics_process(!stunned)
 	if _active_button:
-		_active_button.modulate = Color.white if stunned else Color.green
+		_active_button.set_active(!stunned)
