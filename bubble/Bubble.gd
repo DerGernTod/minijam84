@@ -2,11 +2,6 @@ extends Area2D;
 class_name Bubble
 
 const BubbleColors = preload("res://utils/GlobalEnums.gd").BubbleColors
-const COLOR_MAP = {
-	BubbleColors.BLUE: Color("#4287f5"),
-	BubbleColors.GREEN: Color("#eed80e"),
-	BubbleColors.RED: Color("#f55142"),
-}
 
 export var impulse_force := 1.0
 export var tween_time := 0.5
@@ -45,7 +40,7 @@ func move_to_target(target: Vector2) -> float:
 func set_bubble_type(type: int) -> void:
 	bubble_type = type
 	if sprite:
-		sprite.modulate = COLOR_MAP[type]
+		sprite.modulate = Globals.COLOR_MAP[type]
 
 
 func fire(direction: Vector2) -> void:

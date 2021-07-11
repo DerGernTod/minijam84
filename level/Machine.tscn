@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://level/machine_bubble_select.png" type="Texture" id=1]
 [ext_resource path="res://level/machine_bubble_select_overlay.png" type="Texture" id=2]
@@ -6,33 +6,61 @@
 [ext_resource path="res://level/Machine.gd" type="Script" id=4]
 [ext_resource path="res://level/MachineButton.gd" type="Script" id=5]
 [ext_resource path="res://level/machine/engineCircular_000.ogg" type="AudioStream" id=6]
+[ext_resource path="res://level/machine_pipe_back.png" type="Texture" id=7]
+[ext_resource path="res://level/machine_pipe_front.png" type="Texture" id=8]
+[ext_resource path="res://level/machine_bubble_box_back.png" type="Texture" id=9]
+[ext_resource path="res://level/machine_bubble_box_front.png" type="Texture" id=10]
+[ext_resource path="res://level/machine_bubble_box_overlay.png" type="Texture" id=11]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 91.1436, 10 )
+
+[sub_resource type="LineShape2D" id=2]
+normal = Vector2( 0, 1 )
+
+[sub_resource type="LineShape2D" id=3]
+normal = Vector2( 1, 0 )
+
+[sub_resource type="LineShape2D" id=4]
+normal = Vector2( 0, 1 )
+
+[sub_resource type="LineShape2D" id=5]
+normal = Vector2( -1, 0 )
+
+[sub_resource type="LineShape2D" id=6]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 40, 12 )
+
+[sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 48, 168 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 48, 168 )
+
+[sub_resource type="AtlasTexture" id=9]
 flags = 2
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 128, 64 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=10]
 flags = 2
 atlas = ExtResource( 3 )
 region = Rect2( 128, 0, 128, 64 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=11]
 flags = 2
 atlas = ExtResource( 3 )
 region = Rect2( 256, 0, 128, 64 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=12]
 flags = 2
 atlas = ExtResource( 3 )
 region = Rect2( 384, 0, 128, 64 )
 
-[sub_resource type="SpriteFrames" id=7]
+[sub_resource type="SpriteFrames" id=13]
 animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -41,6 +69,88 @@ animations = [ {
 [node name="Machine" type="Node2D"]
 z_index = -1
 script = ExtResource( 4 )
+
+[node name="Pipe" type="Node2D" parent="."]
+position = Vector2( 192, -48 )
+z_index = -3
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Pipe"]
+position = Vector2( 0, 24 )
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pipe/StaticBody2D"]
+position = Vector2( 0, 20 )
+scale = Vector2( 1.3166, 1.77245 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Pipe/StaticBody2D"]
+position = Vector2( 0, -48 )
+scale = Vector2( 1.3166, 1.77245 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Pipe/StaticBody2D"]
+position = Vector2( -128, -24 )
+shape = SubResource( 3 )
+
+[node name="PipeBack" type="Sprite" parent="Pipe"]
+position = Vector2( 0, 24 )
+scale = Vector2( 4, 4 )
+z_index = -1
+texture = ExtResource( 7 )
+
+[node name="PipeFront" type="Sprite" parent="Pipe"]
+position = Vector2( 0, 24 )
+scale = Vector2( 4, 4 )
+z_index = 2
+texture = ExtResource( 8 )
+
+[node name="BubbleBox" type="Node2D" parent="."]
+position = Vector2( 360, -24 )
+
+[node name="Back" type="Sprite" parent="BubbleBox"]
+scale = Vector2( 4, 4 )
+z_index = -4
+texture = ExtResource( 9 )
+
+[node name="Front" type="Sprite" parent="BubbleBox"]
+scale = Vector2( 4, 4 )
+texture = ExtResource( 10 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BubbleBox"]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BubbleBox/StaticBody2D"]
+position = Vector2( 0, -48 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BubbleBox/StaticBody2D"]
+position = Vector2( 28, -16 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="BubbleBox/StaticBody2D"]
+position = Vector2( 0, 20 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="BubbleBox/StaticBody2D"]
+position = Vector2( -44, -16 )
+rotation = 1.5708
+shape = SubResource( 7 )
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="BubbleBox"]
+script = ExtResource( 5 )
+bubble_color = -1
+
+[node name="Overlay" type="Sprite" parent="BubbleBox/Area2D"]
+visible = false
+scale = Vector2( 4, 4 )
+texture = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BubbleBox/Area2D"]
+position = Vector2( 0, 24 )
+shape = SubResource( 14 )
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 4, 4 )
@@ -52,7 +162,7 @@ script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Red"]
 position = Vector2( -8, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 
 [node name="Overlay" type="Sprite" parent="Red"]
 visible = false
@@ -67,7 +177,7 @@ bubble_color = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Green"]
 position = Vector2( -8, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 
 [node name="Overlay" type="Sprite" parent="Green"]
 visible = false
@@ -82,7 +192,7 @@ bubble_color = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Blue"]
 position = Vector2( 16, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 
 [node name="Overlay" type="Sprite" parent="Blue"]
 visible = false
@@ -96,7 +206,8 @@ autoplay = true
 [node name="RunningAnimation" type="AnimatedSprite" parent="."]
 visible = false
 scale = Vector2( 4, 4 )
-frames = SubResource( 7 )
+frames = SubResource( 13 )
+frame = 1
 playing = true
 
 [node name="RunningSound" type="AudioStreamPlayer" parent="."]

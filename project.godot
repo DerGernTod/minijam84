@@ -48,6 +48,10 @@ config/name="Minijam 84 Bubbles"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Globals="*res://utils/Globals.gd"
+
 [display]
 
 window/size/width=1920
@@ -120,6 +124,8 @@ ui_up={
 
 2d_physics/layer_1="bubbles"
 2d_physics/layer_2="customers"
+2d_physics/layer_3="cup_bubbles"
+2d_physics/layer_4="pipe_bubbles"
 
 [physics]
 
