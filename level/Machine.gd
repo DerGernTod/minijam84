@@ -19,6 +19,7 @@ onready var _audio_start = preload("res://level/machine/production_start.ogg")
 onready var _audio_done = preload("res://level/machine/production_done.ogg")
 onready var _anim_sprite = $RunningAnimation
 onready var _audio = $AudioStreamPlayer2D
+onready var _audio_running = $RunningSound
 onready var colors = {
 	BubbleColors.RED: $Red,
 	BubbleColors.GREEN: $Green,
@@ -73,10 +74,12 @@ func _handle_action_press() -> void:
 			_anim_sprite.visible = true
 			_active_button.set_active(false)
 			_audio.stream = _audio_start
-			_audio.play()
+			_audio_running.play(0)
+			# _audio.play()
 			yield(get_tree().create_timer(processing_time), "timeout")
-			_audio.stream = _audio_done
-			_audio.play()
+			#_audio.stream = _audio_done
+			#_audio.play()
+			_audio_running.stop()
 			if _active_button:
 				_active_button.set_active(true)
 			_state = MachineState.READY
