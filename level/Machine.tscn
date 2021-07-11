@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://level/machine_bubble_select.png" type="Texture" id=1]
 [ext_resource path="res://level/machine_bubble_select_overlay.png" type="Texture" id=2]
 [ext_resource path="res://level/machine_bubble_select_animation.png" type="Texture" id=3]
 [ext_resource path="res://level/Machine.gd" type="Script" id=4]
 [ext_resource path="res://level/MachineButton.gd" type="Script" id=5]
+[ext_resource path="res://level/machine/engineCircular_000.ogg" type="AudioStream" id=6]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 48, 168 )
@@ -96,5 +97,8 @@ autoplay = true
 visible = false
 scale = Vector2( 4, 4 )
 frames = SubResource( 7 )
-frame = 3
 playing = true
+
+[node name="RunningSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -17.0
