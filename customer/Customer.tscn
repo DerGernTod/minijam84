@@ -17,16 +17,17 @@ script = ExtResource( 2 )
 speed = 100
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -29.5714, 173.714 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 32, -176 )
+position = Vector2( 2.42855, -2.28571 )
 shape = SubResource( 1 )
 
 [node name="Tween" type="Tween" parent="."]
 
 [node name="OrderBubble" type="Sprite" parent="."]
-position = Vector2( 144, -304 )
+position = Vector2( 114.429, -130.286 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 

@@ -32,7 +32,9 @@ var is_dead := false
 onready var screen_width := get_viewport_rect().size.x
 onready var bubble_scene := preload("res://bubble/Bubble.tscn")
 onready var cup_bubble_scene := preload("res://player/CupBubble.tscn")
+onready var audio_shoot := preload("res://player/shoot.ogg")
 onready var straw_top := $StrawTop
+onready var audio_player := $AudioStreamPlayer2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -56,10 +58,11 @@ func add_ammo(type: int) -> void:
 	cup_bubble.global_position = global_position
 	
 	
-func set_stunned(stunned: bool) -> void:
+func set_stunned(stunned: bool, origin: Vector2 = Vector2.ZERO) -> void:
 	set_physics_process(!stunned)
 	if stunned:
 		emit_signal("stun_started")
+		straw_top.look_at(origin)
 	else:
 		emit_signal("stun_ended")
 
@@ -117,6 +120,8 @@ func _fire_bubble(direction: Vector2) -> void:
 	var oldest_bubble = cur_bubbles.pop_front()
 	if not oldest_bubble:
 		return
+	audio_player.stream = audio_shoot
+	audio_player.play()
 	var old_pos = oldest_bubble.global_position
 	$StrawTop.remove_child(oldest_bubble)
 	$"/root/Main".add_child(oldest_bubble)

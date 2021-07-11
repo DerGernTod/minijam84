@@ -48,7 +48,7 @@ func set_required_bubbles(required: Dictionary) -> void:
 
 
 func _chase_player(delta: float) -> void:
-	var player_pos = $"/root/Main/Player".global_position
+	var player_pos = $"/root/Main/Player".straw_top.global_position
 	var target_dir = player_pos - position
 	position += speed * target_dir.normalized() * delta
 	
@@ -59,7 +59,7 @@ func _chase_player(delta: float) -> void:
 		
 		if body is Player:
 			emit_signal("suck_started")
-			body.set_stunned(true)
+			body.set_stunned(true, global_position)
 			while not _is_satisfied:
 				var bubble_type = yield(body.lose_bubble(), "completed")
 				if bubble_type < 0:
