@@ -29,6 +29,7 @@ onready var cup_bubble_scene := preload("res://player/CupBubble.tscn")
 onready var audio_shoot := preload("res://player/shoot.ogg")
 onready var straw_top := $StrawTop
 onready var audio_player := $AudioStreamPlayer2D
+onready var anim := $AnimatedSprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -55,9 +56,11 @@ func add_ammo(type: int) -> void:
 func set_stunned(stunned: bool, origin: Vector2 = Vector2.ZERO) -> void:
 	set_physics_process(!stunned)
 	if stunned:
+		anim.frame = 1
 		emit_signal("stun_started")
 		straw_top.look_at(origin)
 	else:
+		anim.frame = 0
 		emit_signal("stun_ended")
 
 
@@ -130,6 +133,7 @@ func _kill() -> void:
 	set_physics_process(false)
 	emit_signal("out_of_ammo")
 	is_dead = true
+	anim.frame = 1
 
 
 func lose_bubble() -> int:

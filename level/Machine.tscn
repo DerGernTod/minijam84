@@ -207,7 +207,7 @@ autoplay = true
 visible = false
 scale = Vector2( 4, 4 )
 frames = SubResource( 13 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="RunningSound" type="AudioStreamPlayer" parent="."]
