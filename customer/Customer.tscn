@@ -11,14 +11,13 @@ extents = Vector2( 54.7143, 54.8571 )
 [node name="Customer" type="Area2D" groups=[
 "customers",
 ]]
-scale = Vector2( 0.7, 0.7 )
 z_index = 3
 collision_layer = 2
 script = ExtResource( 2 )
 speed = 100
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -18.3189, 166.025 )
+position = Vector2( 2.37814, 67.7352 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 1 )
 

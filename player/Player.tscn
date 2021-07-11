@@ -50,7 +50,7 @@ z_index = 2
 texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -80 )
+position = Vector2( 0.314972, -31.808 )
 shape = SubResource( 1 )
 
 [node name="StrawTop" type="Node2D" parent="."]
