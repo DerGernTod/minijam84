@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://fonts/OldLondon.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://fonts/BaksoSapi.otf" type="DynamicFontData" id=2]
 [ext_resource path="res://fonts/button_font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://ui/MainMenu.gd" type="Script" id=4]
+[ext_resource path="res://ui/PlayerMainMenu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ui/BubbleMainMenu.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 148
@@ -15,7 +17,9 @@ outline_size = 4
 outline_color = Color( 0.745098, 0.407843, 0.407843, 1 )
 font_data = ExtResource( 2 )
 
-[node name="MainMenu" type="Panel"]
+[node name="MainMenu" type="Node"]
+
+[node name="UI" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
@@ -23,23 +27,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="VBoxContainer" parent="."]
+[node name="HBoxContainer" type="VBoxContainer" parent="UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="UI/HBoxContainer"]
 margin_right = 1920.0
-margin_bottom = 538.0
+margin_bottom = 529.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Heading" type="Label" parent="HBoxContainer/CenterContainer"]
+[node name="Heading" type="Label" parent="UI/HBoxContainer/CenterContainer"]
 margin_left = 696.0
-margin_top = 224.0
+margin_top = 219.0
 margin_right = 1224.0
-margin_bottom = 314.0
+margin_bottom = 309.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_fonts/font = SubResource( 1 )
@@ -47,36 +54,44 @@ text = "Tea Time"
 align = 1
 valign = 1
 
-[node name="VBoxContainer" type="HBoxContainer" parent="HBoxContainer"]
-margin_top = 542.0
+[node name="VBoxContainer" type="HBoxContainer" parent="UI/HBoxContainer"]
+margin_top = 533.0
 margin_right = 1920.0
-margin_bottom = 1080.0
+margin_bottom = 1062.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Exit" type="Button" parent="HBoxContainer/VBoxContainer"]
+[node name="Exit" type="Button" parent="UI/HBoxContainer/VBoxContainer"]
 margin_left = 359.0
-margin_top = 219.0
+margin_top = 214.0
 margin_right = 599.0
-margin_bottom = 319.0
+margin_bottom = 314.0
 rect_min_size = Vector2( 240, 100 )
 size_flags_horizontal = 6
 size_flags_vertical = 6
 custom_fonts/font = ExtResource( 3 )
 text = "Exit"
 
-[node name="Play" type="Button" parent="HBoxContainer/VBoxContainer"]
+[node name="Play" type="Button" parent="UI/HBoxContainer/VBoxContainer"]
 margin_left = 1321.0
-margin_top = 219.0
+margin_top = 214.0
 margin_right = 1561.0
-margin_bottom = 319.0
+margin_bottom = 314.0
 rect_min_size = Vector2( 240, 100 )
 size_flags_horizontal = 6
 size_flags_vertical = 6
 custom_fonts/font = ExtResource( 3 )
 text = "Play"
 
-[node name="Bubble" type="Label" parent="."]
+[node name="Label" type="Label" parent="UI/HBoxContainer"]
+margin_top = 1066.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+text = "Music credits to Mrthenoronha (Daniel Noronha)"
+align = 2
+valign = 2
+
+[node name="Bubble" type="Label" parent="UI"]
 margin_left = 584.0
 margin_top = 224.0
 margin_right = 926.0
@@ -89,5 +104,89 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="button_up" from="HBoxContainer/VBoxContainer/Exit" to="." method="_on_Exit_button_up"]
-[connection signal="button_up" from="HBoxContainer/VBoxContainer/Play" to="." method="_on_Play_button_up"]
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="PlayerMainMenu" parent="Node2D" instance=ExtResource( 5 )]
+position = Vector2( 928, 568 )
+scale = Vector2( 2, 2 )
+
+[node name="bubbles" type="Node" parent="Node2D"]
+
+[node name="BubbleMainMenu" parent="Node2D/bubbles" instance=ExtResource( 6 )]
+modulate = Color( 0.258824, 0.529412, 0.960784, 1 )
+position = Vector2( 880, 688 )
+
+[node name="BubbleMainMenu2" parent="Node2D/bubbles" instance=ExtResource( 6 )]
+modulate = Color( 0.933333, 0.847059, 0.054902, 1 )
+position = Vector2( 944, 696 )
+
+[node name="BubbleMainMenu3" parent="Node2D/bubbles" instance=ExtResource( 6 )]
+modulate = Color( 0.258824, 0.529412, 0.960784, 1 )
+position = Vector2( 968, 640 )
+
+[node name="BubbleMainMenu4" parent="Node2D/bubbles" instance=ExtResource( 6 )]
+modulate = Color( 0.960784, 0.317647, 0.258824, 1 )
+position = Vector2( 880, 616 )
+
+[node name="BubbleMainMenu5" parent="Node2D/bubbles" instance=ExtResource( 6 )]
+modulate = Color( 0.933333, 0.847059, 0.054902, 1 )
+position = Vector2( 904, 760 )
+
+[node name="BubbleMainMenu6" parent="Node2D/bubbles" instance=ExtResource( 6 )]
+modulate = Color( 0.960784, 0.317647, 0.258824, 1 )
+position = Vector2( 960, 752 )
+
+[node name="BubbleMainMenu7" parent="Node2D/bubbles" instance=ExtResource( 6 )]
+modulate = Color( 0.258824, 0.529412, 0.960784, 1 )
+position = Vector2( 864, 656 )
+
+[node name="BubbleMainMenu13" parent="Node2D/bubbles" instance=ExtResource( 6 )]
+modulate = Color( 0.258824, 0.529412, 0.960784, 1 )
+position = Vector2( 880, 760 )
+
+[node name="BubbleMainMenu14" parent="Node2D/bubbles" instance=ExtResource( 6 )]
+modulate = Color( 0.933333, 0.847059, 0.054902, 1 )
+position = Vector2( 944, 768 )
+
+[node name="BubbleMainMenu15" parent="Node2D/bubbles" instance=ExtResource( 6 )]
+modulate = Color( 0.258824, 0.529412, 0.960784, 1 )
+position = Vector2( 968, 712 )
+
+[node name="BubbleMainMenu16" parent="Node2D/bubbles" instance=ExtResource( 6 )]
+modulate = Color( 0.960784, 0.317647, 0.258824, 1 )
+position = Vector2( 904, 632 )
+
+[node name="BubbleMainMenu17" parent="Node2D/bubbles" instance=ExtResource( 6 )]
+modulate = Color( 0.933333, 0.847059, 0.054902, 1 )
+position = Vector2( 864, 712 )
+
+[node name="BubbleMainMenu18" parent="Node2D/bubbles" instance=ExtResource( 6 )]
+modulate = Color( 0.960784, 0.317647, 0.258824, 1 )
+position = Vector2( 920, 704 )
+
+[node name="BubbleMainMenu19" parent="Node2D/bubbles" instance=ExtResource( 6 )]
+modulate = Color( 0.258824, 0.529412, 0.960784, 1 )
+position = Vector2( 856, 616 )
+
+[node name="BubbleMainMenu8" parent="Node2D/bubbles" instance=ExtResource( 6 )]
+modulate = Color( 0.933333, 0.847059, 0.054902, 1 )
+position = Vector2( 928, 664 )
+
+[node name="BubbleMainMenu9" parent="Node2D/bubbles" instance=ExtResource( 6 )]
+modulate = Color( 0.258824, 0.529412, 0.960784, 1 )
+position = Vector2( 952, 608 )
+
+[node name="BubbleMainMenu10" parent="Node2D/bubbles" instance=ExtResource( 6 )]
+modulate = Color( 0.960784, 0.317647, 0.258824, 1 )
+position = Vector2( 896, 656 )
+
+[node name="BubbleMainMenu11" parent="Node2D/bubbles" instance=ExtResource( 6 )]
+modulate = Color( 0.933333, 0.847059, 0.054902, 1 )
+position = Vector2( 888, 728 )
+
+[node name="BubbleMainMenu12" parent="Node2D/bubbles" instance=ExtResource( 6 )]
+modulate = Color( 0.960784, 0.317647, 0.258824, 1 )
+position = Vector2( 944, 720 )
+
+[connection signal="button_up" from="UI/HBoxContainer/VBoxContainer/Exit" to="UI" method="_on_Exit_button_up"]
+[connection signal="button_up" from="UI/HBoxContainer/VBoxContainer/Play" to="UI" method="_on_Play_button_up"]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ui/PlayerMainMenu.gd" type="Script" id=2]
+[ext_resource path="res://ui/animations/wiggle.tres" type="Animation" id=3]
+
+[node name="PlayerMainMenu" instance=ExtResource( 1 )]
+rotation = 0.108703
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
+autoplay = "wiggle"
+anims/wiggle = ExtResource( 3 )
