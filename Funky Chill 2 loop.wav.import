@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Funky Chill 2 loop.wav-68b9fbe8a5004e14f68d0e1e8ecb88f7.sample"
+
+[deps]
+
+source_file="res://Funky Chill 2 loop.wav"
+dest_files=[ "res://.import/Funky Chill 2 loop.wav-68b9fbe8a5004e14f68d0e1e8ecb88f7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

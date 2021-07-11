@@ -44,7 +44,7 @@ func set_required_bubbles(required: Dictionary) -> void:
 
 
 func _chase_player(delta: float) -> void:
-	var player_pos = $"/root/Main/Player".straw_top.global_position
+	var player_pos = $"/root/Main/Player/CollisionShape2D".global_position
 	var target_dir = player_pos - position
 	position += speed * target_dir.normalized() * delta
 	
