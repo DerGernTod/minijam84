@@ -1,0 +1,16 @@
+[gd_resource type="Animation" format=2]
+
+[resource]
+resource_name = "wiggle"
+length = 2.0
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.692612, 39.6777, 0.692612, -39.6777, 0, -0.660949, 37.8223, 0.660949, -37.8223 ),
+"times": PoolRealArray( 0, 2 )
+}
