@@ -22,6 +22,9 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 480, 270 )
 
+[node name="Machine" parent="." instance=ExtResource( 7 )]
+position = Vector2( 768, 104 )
+
 [node name="Counter" type="Sprite" parent="."]
 position = Vector2( 0, 176 )
 scale = Vector2( 4, 4 )
@@ -32,13 +35,13 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 480, 64 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 800, 150 )
+position = Vector2( 1344, 150 )
 
 [node name="CustomerSpawner" parent="." instance=ExtResource( 6 )]
 spawn_height_perc = 1.0
 
-[node name="Machine" parent="." instance=ExtResource( 7 )]
-position = Vector2( 248, 104 )
+[node name="SpawnTimer" parent="CustomerSpawner" index="0"]
+wait_time = 5.0
 
 [node name="FPSCounter" parent="." instance=ExtResource( 3 )]
 anchor_right = 1.0
@@ -83,4 +86,5 @@ align = 2
 [connection signal="button_up" from="CanvasLayer/GameOver/VBoxContainer/HBoxContainer/MainMenu" to="." method="_on_MainMenu_button_up"]
 [connection signal="button_up" from="CanvasLayer/GameOver/VBoxContainer/HBoxContainer/PlayAgain" to="." method="_on_PlayAgain_button_up"]
 
+[editable path="CustomerSpawner"]
 [editable path="CanvasLayer/GameOver"]

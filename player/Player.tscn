@@ -39,6 +39,7 @@ z_index = 2
 texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -80 )
 shape = SubResource( 1 )
 
 [node name="StrawTop" type="Node2D" parent="."]
@@ -72,3 +73,5 @@ shape = SubResource( 5 )
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="KinematicBody"]
 position = Vector2( -8, 0 )
 shape = SubResource( 6 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

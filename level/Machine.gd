@@ -15,7 +15,10 @@ var _active_button = null
 var _prio_queue = []
 var _processing_color = -1
 
-onready var _anim_sprite = $AnimatedSprite
+onready var _audio_start = preload("res://level/machine/production_start.ogg")
+onready var _audio_done = preload("res://level/machine/production_done.ogg")
+onready var _anim_sprite = $RunningAnimation
+onready var _audio = $AudioStreamPlayer2D
 onready var colors = {
 	BubbleColors.RED: $Red,
 	BubbleColors.GREEN: $Green,
@@ -67,13 +70,17 @@ func _handle_action_press() -> void:
 		MachineState.IDLE:
 			_processing_color = _active_button.bubble_color
 			_state = MachineState.RUNNING
-			_anim_sprite.frame = 1
+			_anim_sprite.visible = true
 			_active_button.set_active(false)
+			_audio.stream = _audio_start
+			_audio.play()
 			yield(get_tree().create_timer(processing_time), "timeout")
+			_audio.stream = _audio_done
+			_audio.play()
 			if _active_button:
 				_active_button.set_active(true)
 			_state = MachineState.READY
-			_anim_sprite.frame = 2
+			_anim_sprite.visible = false
 		MachineState.RUNNING:
 			pass
 		MachineState.READY:
@@ -81,7 +88,6 @@ func _handle_action_press() -> void:
 			for i in 10:
 				$"/root/Main/Player".add_ammo(_processing_color)
 			_processing_color = -1
-			_anim_sprite.frame = 0
 
 
 func _on_Player_stunned(stunned: bool) -> void:
