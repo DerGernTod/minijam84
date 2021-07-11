@@ -10,7 +10,7 @@ export var bubble_color := BubbleColors.RED
 
 var _player_was_here := false
 
-onready var _sprite := $Sprite
+onready var _sprite := $Overlay
 
 func set_active(active: bool) -> void:
 	_sprite.visible = active
